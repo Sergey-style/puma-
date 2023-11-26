@@ -1,0 +1,500 @@
+
+
+*{
+	padding:0;
+	margin:0;
+	border:0;
+}
+*,*:before,*:after{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+:fokus,:active{outline:none;}
+a:focus,a:active{outline:none;}
+
+nav,footer,header,aside{display:block;}
+html,body{
+	height:100%;
+	width:100%;
+	font-size:100%;
+	line-height:1;
+	font-size:14px;
+	-ms-text-size-adjust:100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+input,button,textarea{font-family:inherit;}
+input::-ms-clear{display:none;}
+button{cursor:pointer;}
+button::-moz-fokus-inner{padding:0;border:0;}
+a,a:visited{text-decoration:none;}
+a:hover{text-decoration:none;}
+ul li{list-style:none;}
+img{vertical-align:top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:400}
+/*стили для демонстрации*/
+*,*:before,*:after{
+	padding:0;
+	margin:0;
+	border:0;
+	box-sizing:border-box;
+}
+font-family: 'Bebas Neue', cursive;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Lato', sans-serif;
+font-family: 'Bebas Neue', sans-serif;
+font-family: 'Playfair Display', serif;
+
+html,body{
+	height: 100%;
+}
+body{
+
+}
+.wrapper {
+	min-height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+.content{
+	flex: 1 1 auto;
+}
+
+/*основные стили*/
+.container {/*ограничеваем наш контэйнер(текст,лого,меню) по ширине*/
+	max-width: 1186px;
+	margin: 0px auto;
+	padding: 0px 10px;
+}
+
+.header {
+	position: fixed;
+	width:100%;
+	top: 0 ;
+	left: 0;
+	z-index: 50;
+}
+.header:before{/*оформление плашки на которой находятся логтип,меню,бургер*/
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+	z-index: 2;
+}
+
+.header_body {/*логтип,меню,бургер*/
+	position: relative;
+	display: flex;/*буквы поднимаются и заезжают на логотип*/
+	justify-content: space-between;/*слова(меню) и логотип разбрасуются в разные стороны*/
+	height: 110px;/*плашка  100px*/
+	align-items: center;/*выстраеваем контент по горизонтале*/
+}
+.header_logo {/*оформление логотипа*/
+	flex: 0 0 130px;/*размер лого*/
+	border-radius: 50%;
+	outline: hidden;
+	position: relative;
+	z-index: 3;
+}
+.header_logo span{
+	color:#000000 ;
+}
+
+.header_logo img{
+	max-width: 130px;
+	display: block;/*картинка будет без подрезания*/
+}
+
+.header_burger {/*скрываем бургер для размеров выше 767px*/
+   display: none;
+}
+
+.header_list {
+	display: flex;/*колонка с меню превращается в строку и она помещается на плашке*/
+	position: relative;
+	z-index: 2;
+}
+.header_list li{/*отступ между словами в меню*/
+	list-style: none;
+	margin: 0 0 0 60px;
+}
+.header_link {/*оформление меню(слов)*/
+	font-family: 'Proxima Nova';
+	font-size: 17px;
+	line-height: 1.2;
+	font-weight: 700;
+	letter-spacing: -0.025em;
+	color: #070707;
+}
+.header_link:hover {/*оформление меню(слов)*/
+	color: gray;
+}
+.content {/*отступ текста от шапки сайта*/
+	padding: 100px 0 0 0;
+}
+
+@media (max-width: 767px){
+body.lock{/*блокируется скрол под выехавшем меню*/
+   overflow: hidden;
+}
+.header_body{/*высота плашки уменьшаем до 60px*/
+   height: 70px;
+}
+.header_logo{
+   font-size: 10px;
+   line-height: 10px;
+}
+.header_logo img{/*уменьшаем лого до 90px*/
+  	max-width: 90px;
+	display: block;/*картинка будет без подрезания*/
+}
+.header_burger{
+	display: block;
+	position: relative;
+	width: 30px;/*размеры меню бургер*/
+	height: 20px;/*размеры меню бургер*/
+	position: relative;
+   z-index: 3;
+}
+
+.header_burger span{/*рисуем меню бургер, средняя полоса бургера*/
+	position: absolute;
+	background-color: black;
+	width: 100%;
+	height: 2px;
+	left: 0;
+	top: 9px;/*поднимаем на 9px нашу полоску*/
+	transition: all 0.3s ease 0s;/*добавляет анимацию-бургер медленно превращается в крестик*/
+}
+
+.header_burger:before,
+.header_burger:after{/*рисуем меню бургер*/
+	content: '';
+	background-color: black;
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	left: 0;
+	transition: all 0.3s ease 0s;/*добавляет анимацию-бургер медленно превращается в крестик*/
+}
+
+.header_burger:before{/*верхняя полоса бургера*/
+   top: 0;
+}
+.header_burger:after{/*нижняя полоса бургера*/
+   bottom: 0;
+}
+
+.header_menu {/*оформление меню при размере меньше 767px*/
+	position: fixed;
+	top: -100%;/*меню прячется за плашку,пока не нажмешь на бургер*/
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;/*включает скрол, при горизонтальном положении можно будет добраться до всех пунктов меню */
+	transition: all 0.3s ease 0s;/*анимация меню(будет выезжать шторка с меню из плашки фиолет.)*/
+	background-color: #ffffff;
+	padding: 70px 10px 20px 10px;/*отступы меню*/
+   margin: 0 0px 0 0px;
+}
+
+.header_menu.active{
+	top: 0;/*меню появляется при нажатии на бургер*/
+}
+    /*при нажатии на бургер появляется крестик*/
+.header_burger.active span{
+   transform: scale(0);/*убираем среднюю палочку*/
+}
+
+.header_burger.active:before{/*делаем из бургера крестик*/
+	transform: rotate(45deg);
+	top: 9px;/*регулируем по высоте палочки, чтобы вышел крестик*/
+}
+.header_burger.active:after{/*делаем из бургера крестик*/
+	transform: rotate(-45deg);
+	bottom: 9px;/*регулируем по высоте палочки, чтобы вышел крестик*/
+}
+
+.header_list {/*меняем flex на block  строка с меню превращается в колонку*/
+  	display: block;
+  	text-align: center;
+  	margin-top: 110px;
+}
+.header_list li{
+	margin: 0 0 70px 0;/*отступы между словами меню*/
+}
+.header_link{
+	font-size: 24px;/*увеличиваем шрифт меню*/
+	color:#000000 ;
+}
+
+.content{
+	padding: 60px 0 0 0;/*возвращаем не место уменьшенной плашки контент,какая плашка-такой отступ*/
+}
+}
+
+/*-------------------------------------------------------------------------------*/
+
+.main {
+	background: url('../img/image_1487.png')0 0/cover no-repeat;
+	padding: 110px 0 300px 0;
+}
+.main_img {
+	text-align: center;
+	margin-bottom: 120px;
+}
+.main_title {
+	text-align: center;
+	font-family: 'Proxima Nova';
+	font-size: 80px;
+	line-height: 1.2;
+	font-weight: 700;
+	letter-spacing: -0.05em;
+	color: #ffffff;
+	margin-bottom: 20px;
+}
+.main_subtitle {
+	text-align: center;
+	opacity: 0.67;
+	font-family: 'Proxima Nova';
+	font-size: 20px;
+	line-height: 1.2;
+	font-weight: 400;
+	letter-spacing: -0.05em;
+	color: #ffffff;
+	margin-bottom: 92px;
+}
+.main_button {
+	text-align: center;
+}
+.main_btn {
+	font-family: 'Proxima Nova';
+	font-size: 12px;
+	line-height: 1.2;
+	font-weight: 700;
+	color: #ffffff;
+   border: 2px solid #ffffff;
+	padding: 20px 40px;
+}
+@media(max-width: 770px){
+.sachen_row {
+	flex-direction: column;
+	align-items: center;
+}
+.main_img {
+	text-align: center;
+	margin-bottom: 70px;
+}
+}
+/*-------------------------------------------------*/
+.sachen {
+	padding: 0 0 100px 0;
+	margin-top: -100px;
+}
+.container {}
+.sachen_row {
+	display: flex;
+	flex: 0 1 100%;
+}
+.sachen_card1 {
+	background-color: orange;
+	flex: 0 1 50%;
+}
+.sachen_card2 {
+	background-color: gray;
+	flex: 0 1 50%;
+}
+.sachen_content {
+	outline: 7px solid #ffffff;
+	outline-offset: -20px;
+	padding: 30px 0 30px 25px;
+}
+.sachen_title {
+	font-family: 'Proxima Nova';
+	font-size: 50px;
+	line-height: 46px;
+	font-weight: 700;
+	letter-spacing: -0.025em;
+	color: #ffffff;
+}
+.sachen_item {
+	display: flex;
+	margin-top: 120px;
+}
+.sachen_item li{
+	font-family: 'Proxima Nova';
+	font-size: 12px;
+	line-height: 1.2;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: -0.025em;
+	color: #ffffff;
+	margin-right: 47px;
+}
+@media(max-width: 770px){
+.sachen_row {
+	flex-direction: column;
+	align-items: center;
+}
+}
+/*-------------------------------------------------------------*/
+.blog {
+	padding: 70px 0 70px 0;
+}
+.container {}
+.title{
+	text-align: center;
+	font-family: 'Proxima Nova';
+	font-size: 48px;
+	line-height: 1.2;
+	font-weight: 700;
+	letter-spacing: -0.05em;
+	color: #1f1f1f;
+}
+.blog_title {
+	margin-bottom: 20px;
+}
+.subtitle{
+	text-align: center;
+	opacity: 0.56;
+	font-family: 'Proxima Nova';
+	font-size: 20px;
+	line-height: 1.2;
+	font-weight: 400;
+	letter-spacing: -0.05em;
+	color: #000000;
+}
+.blog_subtitle {
+	margin-bottom: 50px;
+}
+.blog_porfolio {}
+.blog_fotos {
+	display: flex;
+}
+.blog_img img{
+	width: 100%;
+}
+.blog_foto_gros img{
+	width: 100%;
+}
+.blog_foto {
+	display: flex;
+}
+.blog_foto_klein {}
+.blog_button{
+	text-align: center;
+	margin-top: 90px;
+}
+@media(max-width: 1100px){
+.blog_fotos {
+}
+}
+/*--------------------------------------------------*/
+.bestelung {
+	padding: 50PX 0 50PX 0;
+}
+.container {}
+.bestelung_title {
+	margin-bottom: 20px;
+}
+.bestelung_subtitle {
+	margin-bottom: 50px;
+}
+.bestelung_button {
+	text-align: center;
+	margin-top: 90px;
+}
+.bestelung_btn {
+	font-family: 'Proxima Nova';
+	font-size: 12px;
+	line-height: 1.2;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: -0.025em;
+	color: red;
+	opacity: 0.7;
+	padding: 20px 40px;
+	background-color: rgba(255,255,255,0.0);
+	border: 2px solid red;
+}
+.bestelung_btn:hover {
+	opacity: 0.9;
+	border: 3px solid red;
+}
+/*-----------------------------------------------------*/
+.footer {
+	background-color: black;
+	padding: 50px 0 50px 0;
+}
+.container {}
+.footer_row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 30px;
+}
+.footer_menu {
+	display: flex;
+}
+.footer_menu li{
+	font-family: 'Proxima Nova';
+	font-size: 14px;
+	line-height: 1.2;
+	font-weight: 700;
+	letter-spacing: -0.025em;
+	color: #868686;
+	margin-right: 30px;
+}
+.footer_menu li:last-child{
+	margin: 0;
+}
+.footer_menu li:hover{
+	сolor: #ffffff;
+}
+.footer_logo {
+	margin: 0 70px 0 70px;
+}
+.footer_socials {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 40px;
+}
+.footer_social {
+	border-radius: 50%;
+	width: 63px;
+	height: 63px;
+	border: 2px solid #f1f1f1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 15px;
+}
+.footer_social:last-child {
+	margin: 0;
+}
+.footer_copyriting {
+	text-align: center;
+	opacity: 0.3;
+	font-family: 'Proxima Nova';
+	font-size: 11px;
+	line-height: 0px;
+	font-weight: 400;
+	text-transform: uppercase;
+	color: #ffffff;
+}
+@media(max-width: 750px){
+.footer_menu {
+	flex-direction: column;
+}
+.footer_menu li{
+	margin-right: 0;
+	margin-bottom: 15px;
+}
+.footer_logo {
+	margin: 0 50px 0 50px;
+}
